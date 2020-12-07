@@ -11,7 +11,7 @@ import (
 func NewServerApiMock() *gin.Engine {
 	r := gin.Default()
 	r.POST("/articles", mockCreateArticle)
-	r.GET("/article/:id", mockGetArticle)
+	r.GET("/articles/:id", mockGetArticle)
 	return r
 }
 
