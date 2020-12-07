@@ -15,7 +15,7 @@ func NewServerApiMock() *gin.Engine {
 	return r
 }
 
-func mockCreateArticle (c *gin.Context) {
+func mockCreateArticle(c *gin.Context) {
 	article := &Article{}
 
 	err := c.BindJSON(article)
@@ -40,7 +40,7 @@ func mockCreateArticle (c *gin.Context) {
 		[]byte(`{"id":1,"author":"Author Name","title":"Title","Body":"Article content"}`))
 }
 
-func mockGetArticle (c *gin.Context) {
+func mockGetArticle(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.Data(http.StatusBadRequest, "application/json", errResponseBody(err))
@@ -60,5 +60,5 @@ func mockGetArticle (c *gin.Context) {
 }
 
 func errResponseBody(err error) []byte {
-	return []byte(`{"error":"`+err.Error()+`"}`)
+	return []byte(`{"error":"` + err.Error() + `"}`)
 }
