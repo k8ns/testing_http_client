@@ -1,4 +1,4 @@
-# Simple approach to test Client for 3rd party API in Go with Gin
+# A simple approach to test a Client for 3rd party API in Go with Gin
 
 Using [Gin](https://github.com/gin-gonic/gin) it is quite simple to build a stub server that emulates 3rd 
 party server behaviour. 
