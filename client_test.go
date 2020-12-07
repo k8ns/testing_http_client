@@ -12,7 +12,7 @@ var (
 
 func TestMain(m *testing.M) {
 	go func() {
-		err := NewServerApiMock().Run(":8123")
+		err := NewServerApiStub().Run(":8123")
 		if err != nil {
 			panic(err)
 		}

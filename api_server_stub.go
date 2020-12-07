@@ -8,14 +8,14 @@ import (
 	"strconv"
 )
 
-func NewServerApiMock() *gin.Engine {
+func NewServerApiStub() *gin.Engine {
 	r := gin.Default()
-	r.POST("/articles", mockCreateArticle)
-	r.GET("/articles/:id", mockGetArticle)
+	r.POST("/articles", stubCreateArticle)
+	r.GET("/articles/:id", stubGetArticle)
 	return r
 }
 
-func mockCreateArticle(c *gin.Context) {
+func stubCreateArticle(c *gin.Context) {
 	article := &Article{}
 
 	err := c.BindJSON(article)
@@ -40,7 +40,7 @@ func mockCreateArticle(c *gin.Context) {
 		[]byte(`{"id":1,"author":"Author Name","title":"Title","Body":"Article content"}`))
 }
 
-func mockGetArticle(c *gin.Context) {
+func stubGetArticle(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.Data(http.StatusBadRequest, "application/json", errResponseBody(err))
