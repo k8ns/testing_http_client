@@ -25,12 +25,23 @@ func TestClientCanPostArticle(t *testing.T) {
 	cli := &ApiClient{BaseUrl: baseUrl}
 
 	article := &Article{
-		Title: "Title",
+		Title:  "Title",
 		Author: "Author Name",
-		Body: "Article content",
+		Body:   "Article content",
 	}
 
 	id, err := cli.CreateArticle(article)
 	assert.Nil(t, err)
 	assert.Equal(t, 1, id)
+}
+
+func TestClientCanHandleErrorWhilePostingArticle(t *testing.T) {
+	cli := &ApiClient{BaseUrl: baseUrl}
+
+	article := &Article{}
+
+	id, err := cli.CreateArticle(article)
+	assert.NotNil(t, err)
+	assert.Equal(t, "not expected status code", err.Error())
+	assert.Equal(t, 0, id)
 }

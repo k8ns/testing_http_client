@@ -3,6 +3,7 @@ package resttest
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"net/http"
 )
 
@@ -24,6 +25,10 @@ func (c *ApiClient) CreateArticle(a *Article) (int, error) {
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return 0, err
+	}
+
+	if resp.StatusCode != http.StatusCreated {
+		return 0, errors.New("not expected status code")
 	}
 
 	buf := &bytes.Buffer{}
